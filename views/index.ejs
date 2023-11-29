@@ -7,6 +7,8 @@
 </head>
 <body>
     chat room
+
+    
 <input id="startChat" type="hidden" data-roomId="<%= id %>">Start chat</input>
 
 <input type="text" id="user_id" placeholder="enter user id"></input>
@@ -15,7 +17,9 @@
 
 
 <ul id="msglist">
-
+    <% for(var i=0; i<chats.length; i++) {%>
+        <li><%= chats[i].user %>: <%= chats[i].content %></li>
+     <% } %>
 </ul>
 
 
