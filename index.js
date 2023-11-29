@@ -15,8 +15,9 @@ io.on('connection', (socket) => {
     // setInterval(()=>{
     //     socket.emit('from_server');
     // },2000);
-    socket.on('from_client',()=>{
-        console.log("message from client");
+    socket.on('msg_send',(data)=>{  // server recieves a message
+        console.log("message from client",data);
+        io.emit('msg_recieved',data); // server sends a message to all other clients
     })
 
   });
