@@ -24,7 +24,7 @@ app.get('/chat/:roomId', async (req, res) => {
 })
 
 io.on('connection', (socket) => {
-    console.log('a user connected',socket.id);
+    //console.log('a user connected',socket.id);
 
     socket.on('join_room', (data) => {
         socket.join(data.room_id);
@@ -32,14 +32,19 @@ io.on('connection', (socket) => {
     })
     
     socket.on('msg_send',async (data)=>{  // server recieves a message
-        console.log("message from client",data);
+        //console.log("message from client",data);
         const chat = await Chat.create({
             content:data.msg,
             user:data.username,
             roomId:data.room_id
         })
-        io.to(data.roomId).emit('msg_recieved',data); // server sends a message to all other clients
+        io.to(data.room_id).emit('msg_recieved',data); // server sends a message to all other clients
     });
+
+    socket.on('Typing', (data)=>{
+        console.log(data);
+        socket.broadcast.to(data.room_id).emit('Typing',data);
+    })
 
   });
 
