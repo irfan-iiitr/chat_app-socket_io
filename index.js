@@ -42,7 +42,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('Typing', (data)=>{
-        console.log(data);
+        //console.log(data);
         socket.broadcast.to(data.room_id).emit('Typing',data);
     })
 
