@@ -53,7 +53,7 @@ socket.emit('join_room',{
     );
 
     socket.on('Typing',(data)=>{
-    console.log("typing",data.username);
+    //console.log("typing",data.username);
     spantyping.style.display='block';
 spantyping.innerHTML=`${data.username} is typing`;
 typingId= setTimeout(()=>{
@@ -66,9 +66,9 @@ typingId= setTimeout(()=>{
 })
 
 btn.onclick=function exec(){
-    console.log("button clicked");
-    console.log(inputField.value);
-    console.log(startChat.getAttribute('data-roomId'));
+    // console.log("button clicked");
+    // console.log(inputField.value);
+    // console.log(startChat.getAttribute('data-roomId'));
     socket.emit('msg_send',{
         msg:inputField.value,
         username:username.value,
@@ -97,7 +97,7 @@ inputField.addEventListener('keypress',function(e){
     clearTimeout(typingId);
       socket.emit('Typing',{room_id:startChat.getAttribute('data-roomId'),username:username.value});
       typing=false;
-      
+
 });
     </script>
 </body>
